@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812155611) do
+ActiveRecord::Schema.define(version: 20170808123404) do
 
   create_table "aircrafts", force: :cascade do |t|
     t.string "tail_number"
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20170812155611) do
     t.string "iata_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "state_id"
-    t.index ["state_id"], name: "index_airports_on_state_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -37,10 +35,6 @@ ActiveRecord::Schema.define(version: 20170812155611) do
     t.string "passenger_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "users_id"
-    t.integer "flight_id"
-    t.index ["flight_id"], name: "index_bookings_on_flight_id"
-    t.index ["users_id"], name: "index_bookings_on_users_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -58,10 +52,6 @@ ActiveRecord::Schema.define(version: 20170812155611) do
     t.datetime "departure_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "aircraft_id"
-    t.integer "airport_id"
-    t.index ["aircraft_id"], name: "index_flights_on_aircraft_id"
-    t.index ["airport_id"], name: "index_flights_on_airport_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -70,18 +60,12 @@ ActiveRecord::Schema.define(version: 20170812155611) do
     t.string "payment_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "booking_id"
-    t.index ["booking_id"], name: "index_payments_on_booking_id"
-    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "country_id"
-    t.index ["country_id"], name: "index_states_on_country_id"
   end
 
   create_table "users", force: :cascade do |t|
